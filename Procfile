@@ -1,0 +1,1 @@
+web: gunicorn FamilyTreeApp.wsgi --log-file -
