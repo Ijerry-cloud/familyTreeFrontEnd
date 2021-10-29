@@ -164,7 +164,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # Extra lookup directories for collectstatic to find static files
 
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
