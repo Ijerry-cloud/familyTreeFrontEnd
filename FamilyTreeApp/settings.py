@@ -94,22 +94,24 @@ env = "prod"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config("DB_NAME"),
-        'USER': config("DB_USER"),
-        'PASSWORD': config("DB_PASSWORD"),
-        'HOST': 'localhost',
-        'PORT': config("DB_PORT"),
-    }
-}
 
 if env == "prod":
     prod_db  =  dj_database_url.config(conn_max_age=500)
+    DATABASES = dict()
+    DATABASES["default"] = {}
     DATABASES['default'].update(prod_db)
+else:
 
-
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config("DB_NAME"),
+            'USER': config("DB_USER"),
+            'PASSWORD': config("DB_PASSWORD"),
+            'HOST': 'localhost',
+            'PORT': config("DB_PORT"),
+        }
+    }
 
 
 
