@@ -53,9 +53,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',  # <-- token authentication
 
     # local apps
-    "core"
-
-
+    "core",
+    "events",
+    "gallery"
 ]
 
 MIDDLEWARE = [
@@ -173,6 +173,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+        'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication'
+        "core.authentication.CustomTokenAuthentication"
     ],
 }

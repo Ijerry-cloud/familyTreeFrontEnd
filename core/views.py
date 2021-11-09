@@ -5,6 +5,10 @@ from core.core_helpers import validate_fields, extract_user_info
 from django.contrib.auth.models import User
 from .models import Profile
 from rest_framework.authtoken.models import Token
+from .serializers import ProfileSerializer
+# from rest_framework.authentication import TokenAuthentication
+from core.authentication import CustomTokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -112,12 +116,12 @@ class LoginApiView(APIView):
                 ok, message = True, "success"
             else:
                 ok, message = False, "invalid password"
+                
+            if not user.is_active:
+                # if the user account is not active or is diabled
+                ok, message = False, "account not activated"
         else:
             ok, message = False, "email does not exist"
-
-        if not user.is_active:
-            # if the user account is not active or is diabled
-            ok, message = False, "account not activated"
 
         if not ok:
             return Response({"message": message}, status=status.HTTP_400_BAD_REQUEST)                
@@ -134,3 +138,122 @@ class LoginApiView(APIView):
         response_data["data"] = data
 
         return Response(response_data, status=status.HTTP_201_CREATED)
+
+
+class ChangePasswordView(APIView):
+    
+    """
+    
+        api to reset a user password
+        
+        {
+            "old_password" : "",
+            "new_password" : ""
+        }
+    """
+    
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, *args, **kwargs):
+        # define required fields
+        required_fields = ["old_password", "new_password"]
+        response_data = dict()
+
+        ok, message = validate_fields(request.data, required_fields)
+
+        if not ok:
+            return Response({"message": message}, status=status.HTTP_400_BAD_REQUEST)
+
+        old_password = request.data.get("old_password")
+        new_password = request.data.get("new_password")
+        
+        if old_password == new_password :
+            return Response({"message": "old password and new password cannot have the same value"}, status=status.HTTP_400_BAD_REQUEST)    
+        
+        user = request.user
+        
+        # if the old password is not correct
+        # return an error
+        if not user.check_password(old_password):
+            ok, message = False, "Password is not correct"
+            
+        if not ok:
+            return Response({"message": message}, status=status.HTTP_400_BAD_REQUEST)
+            
+        # other validations for passwords can go here
+            
+        user.set_password(new_password)
+        user.save()
+            
+        response_data["message"] = "success"
+        response_data["statusCode"] = 200
+
+        return Response(response_data, status=status.HTTP_200_OK)
+    
+    
+class GetUpdateUserProfileView(APIView):
+    
+    """
+        api to get and edit a user profile
+    """
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, *args, **kwargs):
+        
+        response_data = dict()
+
+        
+        user = request.user
+        profile = Profile.objects.filter(user=user).first()
+        
+        # if profile is not found, return a not found 
+        if not profile:
+            return Response({"message": "profile not found"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        
+        profile_serializer = ProfileSerializer(profile)
+        
+            
+        response_data["message"] = "success"
+        response_data["statusCode"] = 200
+        response_data["data"] = profile_serializer.data
+
+        return Response(response_data, status=status.HTTP_200_OK)
+    
+    def post(self, request, *args, **kwargs):
+        
+        response_data = dict()
+
+        
+        user = request.user
+        profile = Profile.objects.filter(user=user).first()
+        
+        # if profile is not found, return a not found 
+        if not profile:
+            return Response({"message": "profile not found"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # update the user fields
+        
+        
+        # update profile fields
+        profile.first_name = request.data.get("first_name", profile.first_name)
+        profile.middle_name = request.data.get("middle_name", profile.middle_name)
+        profile.last_name = request.data.get("last_name", profile.last_name)
+        profile.date_of_birth = request.data.get("date_of_birth", profile.date_of_birth)
+        profile.hobbies = request.data.get("hobbies", profile.hobbies)
+        profile.image_64 = request.data.get("image", profile.image_64)
+        profile.gender = request.data.get("gender", profile.gender)
+        
+        # save the new data for both models
+        profile.save()
+        user.save()
+        
+        profile_serializer = ProfileSerializer(profile)
+
+        response_data["message"] = "success"
+        response_data["statusCode"] = 200
+        response_data["data"] = profile_serializer.data
+
+        return Response(response_data, status=status.HTTP_200_OK)
