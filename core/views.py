@@ -138,6 +138,29 @@ class LoginApiView(APIView):
         response_data["data"] = data
 
         return Response(response_data, status=status.HTTP_201_CREATED)
+    
+
+class LogoutApiView(APIView):
+
+    """
+        destroys a users token
+    """
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, *args, **kwargs):
+            
+        tokens = Token.objects.filter(user=request.user)
+
+        # delete the tokens
+        tokens.delete()
+
+        response_data = dict()
+
+        response_data["message"] = "success"
+        response_data["statusCode"] = 200
+
+        return Response(response_data, status=status.HTTP_201_CREATED)
 
 
 class ChangePasswordView(APIView):
