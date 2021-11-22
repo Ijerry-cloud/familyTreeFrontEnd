@@ -10,10 +10,14 @@ class Event(models.Model):
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
     tags = models.CharField(null=True, max_length=1000)
+    created_by = models.CharField(max_length=1000, null=True)
     
     
     def __str__(self) -> str:
         return "%s" % (self.title)
+    
+    class Meta:
+        ordering = ["-id"]
     
 
     
