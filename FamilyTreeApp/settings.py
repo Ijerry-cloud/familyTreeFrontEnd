@@ -51,6 +51,7 @@ INSTALLED_APPS = [
      # Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',  # <-- token authentication
+    'django_filters', # filters
 
     # local apps
     "core",
@@ -92,11 +93,18 @@ WSGI_APPLICATION = 'FamilyTreeApp.wsgi.application'
 
 env = "prod"
 
+UBASE_URL = {
+    "prod": "https://ihediwafamilytreeapp.herokuapp.com",
+    "prods": "http://127.0.0.1:8001"    
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
 if env == "prod":
+    # heroku production settings
     prod_db  =  dj_database_url.config(conn_max_age=500)
     DATABASES = dict()
     DATABASES["default"] = {}
@@ -178,4 +186,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.TokenAuthentication'
         "core.authentication.CustomTokenAuthentication"
     ],
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination',
+    'PAGE_SIZE': 30
 }

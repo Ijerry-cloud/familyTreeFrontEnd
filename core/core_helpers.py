@@ -1,4 +1,4 @@
-
+from dateutil import parser
 
 
 def validate_fields(data, fields):
@@ -40,3 +40,27 @@ def extract_user_info(user, token):
     data["token"] = token.key
 
     return data
+
+
+def check_date_chronology(start_date, end_date):
+    """
+        function t o ensure that an end date does 
+        not come before start data
+
+    Args:
+        start_date (string): start date string in format (yyyy-mm-dd)
+        end_date (string): end date string in format (yyyy-mm-dd)
+    Return:
+        (Boolean, start_date, end_date): 
+        
+        # returns a boolean indicating if the start date is greater than the end date,
+        # start_date ([date object])
+        # end_date ([date object])
+        
+    """
+    start_date = parser.parse(start_date)
+    end_date = parser.parse(end_date)
+    
+    result = start_date.timestamp() <= end_date.timestamp()
+    
+    return result, start_date, end_date
