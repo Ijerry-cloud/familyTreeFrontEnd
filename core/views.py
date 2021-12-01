@@ -9,7 +9,10 @@ from .serializers import ProfileSerializer
 # from rest_framework.authentication import TokenAuthentication
 from core.authentication import CustomTokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+from base64 import b64decode
+from rest_framework import generics
 
 # Create your views here.
 class SignupApiView(APIView):
@@ -237,7 +240,11 @@ class GetUpdateUserProfileView(APIView):
         
         
         profile_serializer = ProfileSerializer(profile)
-        
+
+        print("#"*100)
+        print(profile.image_64)       
+        print("#"*100) 
+        print(profile_serializer.data)
             
         response_data["message"] = "success"
         response_data["statusCode"] = 200
@@ -280,3 +287,19 @@ class GetUpdateUserProfileView(APIView):
         response_data["data"] = profile_serializer.data
 
         return Response(response_data, status=status.HTTP_200_OK)
+
+    
+class GetProfileImageView(generics.RetrieveAPIView):
+    
+    
+    def get(self, request, *args, **kwargs):
+        """
+            endpoint to generate an image
+            from the base 64 image  
+        """
+        
+        profile = get_object_or_404(Profile, pk=self.kwargs["id"])
+        profile_image = profile.image_64
+        header, profile_image = profile_image.split(";base64,")
+        profile_image = b64decode(profile_image + "=" * (-len(profile_image) % 4))
+        return HttpResponse(profile_image, content_type="image/jpeg")

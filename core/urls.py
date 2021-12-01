@@ -7,4 +7,5 @@ urlpatterns = [
     path("signup/", SignupApiView.as_view(), name="sign_up"),
     path("change_password/", ChangePasswordView.as_view(), name="change_password"),
     path("user_profile/", GetUpdateUserProfileView.as_view(), name="get_update_user_profile"),
+    path("user_profile/<int:id>/image/", GetProfileImageView.as_view(), name="get_profile_image"),
 ]

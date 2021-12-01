@@ -95,7 +95,7 @@ env = "prod"
 
 UBASE_URL = {
     "prod": "https://ihediwafamilytreeapp.herokuapp.com",
-    "prods": "http://127.0.0.1:8001"    
+    "prods": "http://127.0.0.1:8000"    
 }
 
 
