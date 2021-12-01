@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from core.models import Profile
+from FamilyTreeApp.settings import UBASE_URL, env
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -17,5 +18,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         return ""
     
     def get_image(self, profile):
-        pass
+        if profile.image_64:
+            return "%s/core/user_profile/%s/image/" % (UBASE_URL[env], profile.id)
+        return None
         
