@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     # local apps
     "core",
     "events",
-    "gallery"
+    "gallery",
+    "TreeBio",
+    "mptt",
 ]
 
 MIDDLEWARE = [
@@ -91,7 +93,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FamilyTreeApp.wsgi.application'
 
-env = "prod"
+env = "prods"
 
 UBASE_URL = {
     "prod": "https://ihediwafamilytreeapp.herokuapp.com",
