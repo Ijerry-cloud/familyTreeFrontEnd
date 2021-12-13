@@ -6,7 +6,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
-from TreeBio.libs.tree_service import recursive_node_to_dict
+from TreeBio.libs.tree_service import recursive_node_to_dict, treebio2_image_helper, treebio_helper
+from django.http import HttpResponse
+from base64 import b64decode
 
 # Create your views here.
 class GetFamilyTreeApiView(generics.ListAPIView):
@@ -44,20 +46,28 @@ class GetFamilyTreeDetailApiView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request, *args, **kwargs):    
-        bio = get_object_or_404(TreeBio2, pk=self.kwargs)
+        bio = get_object_or_404(TreeBio2, pk=self.kwargs["id"])
         
-        data = {
-            "id": str(bio.id),
-            "first_name": bio.first_name,
-            "last_name": bio.last_name,
-            "gender": bio.gender,
-            "marital_status": bio.marital_status,
-            "dob": str(bio.dob)
-        }
+        data = treebio_helper(bio)
+        
         
         response_data = dict()
         response_data["message"] = "success"
         response_data["data"] = data
         
         return Response(response_data, status=status.HTTP_200_OK)
+
+
+
+class GetFamilyTreeBio2ImageApiView(generics.ListAPIView):
+    """
+        returns an image from the url
+    """   
     
+    def get(self, request, *args, **kwargs):
+        bio = get_object_or_404(TreeBio2, pk=self.kwargs["id"])
+
+        profile_image = bio.image
+        header, profile_image = profile_image.split(";base64,")
+        profile_image = b64decode(profile_image + "=" * (-len(profile_image) % 4))
+        return HttpResponse(profile_image, content_type="image/jpeg")

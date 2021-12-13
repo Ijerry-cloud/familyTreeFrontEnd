@@ -25,6 +25,8 @@ class TreeBio2(MPTTModel):
     gender = models.CharField(max_length=11, null=True, blank=True)
     marital_status = models.CharField(max_length=11, null=True, blank=True)
     dob = models.DateField(null=True)
+    image = models.TextField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
     
     def __str__(self) -> str:
         return "%s %s" % (self.first_name, self.last_name)
