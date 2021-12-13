@@ -93,7 +93,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FamilyTreeApp.wsgi.application'
 
-env = "prods"
+env = "prod"
 
 UBASE_URL = {
     "prod": "https://ihediwafamilytreeapp.herokuapp.com",
