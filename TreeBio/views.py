@@ -58,6 +58,43 @@ class GetFamilyTreeDetailApiView(generics.RetrieveAPIView):
         return Response(response_data, status=status.HTTP_200_OK)
 
 
+class GetFamilyTreeApiViewApiViewV2(generics.ListAPIView):
+    """
+        api to get the family tree v2
+    """
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, *args, **kwargs):
+        
+        tree = TreeBio2.objects.all()
+        
+        tree_list = []
+        
+        for tree_node in tree:
+            
+            tree_list.append({
+                    "id": tree_node.id,
+                    "first_name": tree_node.first_name,
+                    "last_name": tree_node.last_name,
+                    "full_name": (str(tree_node.last_name) + " " + str(tree_node.first_name)),
+                    "gender": tree_node.gender,
+                    "marital_status": tree_node.marital_status,
+                    "image": treebio2_image_helper(tree_node),
+                    "avatar": treebio2_image_helper(tree_node),
+                    "bio": tree_node.bio,
+                    "pid": tree_node.parent.id if tree_node.parent else 0,
+                    "spouse": (tree_node.spouse.last_name + " " + tree_node.spouse.first_name) if tree_node.spouse else ""
+                }
+            )
+            
+        response_data = dict()
+        response_data["message"] = "success"
+        response_data["data"] = tree_list
+        
+        return Response(response_data, status=status.HTTP_200_OK)
+    
+
 
 class GetFamilyTreeBio2ImageApiView(generics.ListAPIView):
     """
