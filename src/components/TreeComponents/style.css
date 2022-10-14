@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    align-items: center;
+    background: #f5f5f5;
+    font-family: sans-serif;
+    
+}
+
+.tree{
+    width:100%;
+    height: auto;
+    text-align: center;
+}
+
+.tree ul{
+    padding-top: 10px;
+    position: relative;
+    transition: .5s;
+}
+
+.tree li{
+    display: inline-table;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 5px;
+    transition: .5s;
+}
+
+.tree li:before, .tree li:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #ccc;
+    width: 51%;
+    height: 10px;
+}
+
+.tree li::after{
+    right: auto;
+    left: 50%;
+    border-left: 1px solid #ccc;
+}
+
+.tree li:only-child:after, .tree li:only-child:before {
+    display:none;
+}
+
+.tree li:only-child{
+    padding-top:0;
+}
+
+.tree li:first-child:before, .tree li:last-child:after {
+    border: none;
+}
+
+.tree li:last-child:before {
+    border-right: 1px solid #ccc;
+    border-radius: 0px 5px 0px 0px;
+}
+
+.tree li:first-child:after {
+    border-radius: 5px 0px 0px 0px;
+}
+
+.tree ul ul:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border: 1px solid #ccc;
+    width: 0;
+    height: 20px;
+}
+
+.tree a{
+    border: 1px solid #ccc;
+    padding: 3px;
+    display: inline-grid;
+    border-radius: 5px;
+    text-decoration-line: none;
+    transition: .5s;
+    background: white;
+}
+
+.tree a img{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px !important;
+    border-radius: 100px;
+    border: 3px solid #ffa500;
+    margin: auto;
+}
+
+.tree a span{
+    border: 1px solid #ffa500;
+    border-radius: 5px;
+    color: black;
+    padding: 4px;
+    padding-right: 2px;
+    padding-left: 2px;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.tree a .kids{
+    border: none;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+
+/* hover section */
+
+.tree li a:hover, .tree li a:hover img, .tree li a:hover span, .tree li a:hover+ul li a
+{
+    background: #c8e4f8;
+    color: orange;
+    border: 1px solid blue;
+    box-shadow: 0px 0px 8px -5px #5f5f5f;
+}
+
+.tree li a:hover+ul li:after, .tree li a:hover+ul li:before, .tree li a:hover+ul:before, .tree li a:hover+ul ul:before 
+{
+    border-color: blue;
+}
