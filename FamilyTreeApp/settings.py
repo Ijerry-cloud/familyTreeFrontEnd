@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+#SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-=(!!1nap5k-&+t78obus2a79_k4+nqm01345*dfzd$++0hl%$-')
 DEBUG = config('DEBUG', default=False, cast=bool)
 EMAIL_HOST = config('EMAIL_HOST', default='localhost')
 EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
@@ -93,7 +94,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FamilyTreeApp.wsgi.application'
 
-env = "prod"
+env = "prods"
 
 UBASE_URL = {
     "prod": "https://ihediwafamilytreeapp.herokuapp.com",
@@ -120,7 +121,7 @@ else:
             'USER': config("DB_USER"),
             'PASSWORD': config("DB_PASSWORD"),
             'HOST': 'localhost',
-            'PORT': config("DB_PORT"),
+            'PORT': '',
         }
     }
 

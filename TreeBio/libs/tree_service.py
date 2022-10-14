@@ -108,6 +108,10 @@ def treebio_helper(treebio2):
     data["dob"] = str(treebio2.dob)
     data["image"] = treebio2_image_helper(treebio2)
     data["bio"] = treebio2.bio
+    data["bio2"] = treebio2.bio2
+    data["bio3"] = treebio2.bio3
+    data["bio4"] = treebio2.bio4
+    data["bio5"] = treebio2.bio5
     data["spouse"] = spouse_data
     data["parent"] = parent_data
     
