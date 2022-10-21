@@ -10,6 +10,8 @@ from rest_framework import generics
 from TreeBio.libs.tree_service import recursive_node_to_dict, treebio2_image_helper, treebio_helper
 from django.http import HttpResponse
 from base64 import b64decode
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 class GetFamilyTreeApiView(generics.ListAPIView):
@@ -164,27 +166,32 @@ class GetFamilyTreeApiSearchApiView(generics.ListAPIView):
     """
         api to perform search on the tree bio
     """
-
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    
     def get(self, request, *args, **kwargs):
         search_name = request.GET.get('name')
         print('search name: ')
         print(search_name)
         people = TreeBio2.objects.filter(Q(first_name__icontains=search_name) | Q(last_name__icontains=search_name))
-        
+        people_set = self.paginate_queryset(self.filter_queryset(people))
+
         tree_list = []
         
-        for person in people:
+        for person in people_set:
             tree_list.append(
                 {
                     'full_name': (str(person.last_name) + " " + str(person.first_name)),
                     'parent' : person.parent.first_name if person.parent else 'Nil',
                     'gender' : person.gender,
-                    'spouse' : person.spouse.first_name if person.spouse else 'Nil'
+                    'spouse' : person.spouse.first_name if person.spouse else 'Nil',
+                    'id' : person.id,
+                    "first_name": person.first_name,
+                    "last_name": person.last_name,
+                    "image": treebio2_image_helper(person),
+                    "avatar": treebio2_image_helper(person),
                 }
             )
-
-        response_data = dict()
-        response_data["message"] = "success"
-        response_data["data"] = tree_list
-        
-        return Response(response_data, status=status.HTTP_200_OK)
+            
+        return self.get_paginated_response(tree_list)

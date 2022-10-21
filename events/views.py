@@ -16,13 +16,14 @@ from .filters import EventFilter
 from base64 import b64decode
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from django.utils import timezone
 
 
 # LIST CREATE EVENTS
 class ListCreateApiView(generics.ListCreateAPIView):
     
     """
-        api to get and create an event
+        api to get recent or upcoming events 
     """
     authentication_classes = [CustomTokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -165,3 +166,24 @@ class GetEventCoverImageView(generics.RetrieveAPIView):
         header, cover_image = cover_image.split(";base64,")
         cover_image = b64decode(cover_image + "=" * (-len(cover_image) % 4))
         return HttpResponse(cover_image, content_type="image/jpeg")
+
+class ListAllApiView(generics.ListAPIView):
+    """endpoint to get recent and upcoming events 
+    """
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        now = timezone.now().today()
+        upcoming_events = Event.objects.filter(end_date__gte=now)[:5]
+        recent_events = Event.objects.filter(end_date__lte=now)[:5]
+        events = upcoming_events | recent_events 
+
+        serializer = EventSerializer(events, many=True)
+        
+        response_data = dict()
+        response_data["message"] = "success"
+        response_data["data"] = serializer.data
+
+        return Response(response_data, status=status.HTTP_200_OK)
+

@@ -190,5 +190,5 @@ REST_FRAMEWORK = {
         "core.authentication.CustomTokenAuthentication"
     ],
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination',
-    'PAGE_SIZE': 30
+    'PAGE_SIZE': 1
 }
