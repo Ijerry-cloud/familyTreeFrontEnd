@@ -21,6 +21,11 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Footer from './Footer';
 import ImageIcon from '@mui/icons-material/Image';
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import Icon from '@mui/material/Icon';
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
+import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EventIcon from '@mui/icons-material/Event';
 import HomeIcon from '@mui/icons-material/Home';
 import { APP_EVENTS_PAGE,
@@ -36,7 +41,7 @@ import { APP_EVENTS_PAGE,
          APP_GET_PROFILE,
          APP_EDIT_PROFILE,
          APP_FAMILY_TREE_BIO_PAGE,
-         TEMP_PAGE
+         APP_FAMILY_SEARCH_PAGE
         } from "../utils/app_routes";
 import EventsPage from "../pages/eventPages/EventsPage";
 import EventsSearchPage from "../pages/eventPages/EventsSearchPage";
@@ -55,9 +60,7 @@ import FamilyTreePage from "../pages/familyPages/FamilyTreePage";
 import TreeComponent from "./TreeComponents/TreeComponent";
 import TreeBioComponent from "./TreeComponents/TreeBioComponent";
 import UBalkanTree from "./TreeComponents/UBalkanTree";
-
-
-import TitlebarImageList from "../tempFiles/imagecard";
+import SearchComponent from "./TreeComponents/SearchComponent";
 
 
 const drawerWidth = 200;
@@ -167,6 +170,31 @@ function Layout({children, window}){
         {
             text: "Gallery",
             icon: <ImageIcon color="primary" />,
+            path: APP_GALLERY_PAGE
+        },
+        {
+            text: "Search Tree",
+            icon: <PersonSearchIcon color="primary" />,
+            path: APP_FAMILY_SEARCH_PAGE
+        },
+        {
+            text: "The Family(Igbo Land)",
+            icon: <FamilyRestroomIcon color="primary" />,
+            path: APP_GALLERY_PAGE
+        },
+        {
+            text: "Amumara(History)",
+            icon: <HolidayVillageIcon color="primary" />,
+            path: APP_GALLERY_PAGE
+        },
+        {
+            text: "Projects",
+            icon: <Icon color="primary">tips_and_updates</Icon>,
+            path: APP_GALLERY_PAGE
+        },
+        {
+            text: "'Letters",
+            icon: <BorderColorIcon color="primary" />,
             path: APP_GALLERY_PAGE
         }
     ];
@@ -356,9 +384,9 @@ function Layout({children, window}){
                         {/* <TreeComponent /> */}
                         <UBalkanTree />
                     </Route> 
-                    <Route path={TEMP_PAGE}>
+                    <Route path={APP_FAMILY_SEARCH_PAGE}>
                         {/*     Temp_page_component */}
-                        <TitlebarImageList />
+                        <SearchComponent />
                     </Route>
 
                 </Switch>

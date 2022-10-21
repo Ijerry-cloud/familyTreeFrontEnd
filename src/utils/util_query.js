@@ -96,4 +96,33 @@ export const fetchData = async ({queryKey}) => {
   
     return response_data;
   }
+
+  export const eventsGetData = async ({queryKey}) => {
+    // a hook that searches data
+    const [_key, {payload_data, url, authenticate, token}] = queryKey;
+    console.log("p: ", payload_data, "u: ", url, "t: ", token, "a: ", authenticate);
+  
+      // add authorization token from state
+      // get access token for this user
+      const config = {};
+
+      // add authorization token to headers for api call
+      if (authenticate){
+        // if theres is no registered access token
+        if (!(token?.token)){
+            toast.error("you are not authenticated, please try logging in again");
+            return;
+        }  
+        
+        console.log("my token is : ", token?.token);
+        const authorization = { Authorization : `Bearer ${token?.token}` }
+        config.headers = authorization;
+        config.params = {'page': payload_data }
+      }
+    console.log("config: ", config);
+    let response_data = await axios.get(url, config);
+  
+    return response_data;
+  }
+  
   

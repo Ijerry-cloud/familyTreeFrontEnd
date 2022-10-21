@@ -39,7 +39,7 @@ export default function InfoDialog (props) {
                 <Typography><strong>Gender:</strong> {props.bio?.gender}</Typography>
             </DialogContentText>
             <DialogContentText >
-                <Typography><strong>Marital Status:</strong> {props.bio?.marital_status}</Typography>
+                <Typography><strong>Spouse:</strong> {props.bio?.spouse}</Typography>
             </DialogContentText>
             <DialogContentText >
                 <Typography><strong>Date of Birth:</strong> {props.bio?.dob}</Typography>

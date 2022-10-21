@@ -16,3 +16,9 @@ export const GET_FAMILY_TREE_V2 = BASE_URL + "/family/v2/";
 export const GET_FAMILY_BIO_PAGE = BASE_URL + "/family/details/:id/";
 
 export const SEARCH_FAMILY_TREE = BASE_URL + "/family/search/"
+
+export const GET_EVENTS_PAGE = BASE_URL + "/events/recent_and_upcoming"
+
+export const GET_EVENTS_DETAIL_PAGE = BASE_URL + "/events/:id/"
+
+export const GET_EVENTS_PAGINATED = BASE_URL + "/events/"

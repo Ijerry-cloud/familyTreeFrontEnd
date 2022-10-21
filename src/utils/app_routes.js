@@ -27,7 +27,7 @@ export const APP_GET_PROFILE = "/app/profile";
 
 export const APP_EDIT_PROFILE =  APP_GET_PROFILE + "/edit";
 
-export const TEMP_PAGE =  "/app/temp_page";
+export const  APP_FAMILY_SEARCH_PAGE =  "/app/search";
 
 
 
