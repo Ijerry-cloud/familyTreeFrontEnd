@@ -66,14 +66,14 @@ export default function EventsPage() {
                     <Typography variant="h3">Upcoming Events</Typography>
                     <EventList nodes={upcoming_nodes} />
                     <Typography sx={{ marginY: "3%" }}>
-                        <Link to={APP_EVENTS_SEARCH_PAGE}>Show More</Link>
+                        <Link to={APP_EVENTS_SEARCH_PAGE + `?page=1&recent_or_upcoming=Upcoming`}>Show More</Link>
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Typography variant="h3">Recent Events</Typography>
                     <EventList nodes={recent_nodes} />
                     <Typography sx={{ marginY: "3%" }}>
-                        <Link to={APP_EVENTS_SEARCH_PAGE}>Show More</Link>
+                        <Link to={APP_EVENTS_SEARCH_PAGE + `?page=1&recent_or_upcoming=Recent`}>Show More</Link>
                     </Typography>
                 </Grid>
             </Grid>

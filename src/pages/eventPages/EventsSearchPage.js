@@ -33,10 +33,11 @@ export default function EventsSearchPage() {
     const history = useHistory();
     const search = useLocation().search;
     const page = new URLSearchParams(search).get('page');
+    const recent_or_upcoming = new URLSearchParams(search).get('recent_or_upcoming');
     const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
 
     let url = GET_EVENTS_PAGINATED
-    let payload_data = page;
+    let payload_data = {'page': page, 'recent_or_upcoming': recent_or_upcoming};
 
     const result = useQuery(['events_page',
         { url, payload_data, authenticate: true, token }],
@@ -57,7 +58,7 @@ export default function EventsSearchPage() {
     const { isLoading, isError, data, error } = result;
 
     const handleChange = (e, value) => {
-        history.push(APP_EVENTS_SEARCH_PAGE + `?page=${value}`);
+        history.push(APP_EVENTS_SEARCH_PAGE + `?page=${value}&recent_or_upcoming=${recent_or_upcoming}`);
     };
 
     if (isLoading) {
@@ -117,7 +118,7 @@ export default function EventsSearchPage() {
                 <Grid container spacing={3} direction="column">
                     {/** divider line */}
                     <Grid item>
-                        <Divider><Typography variant="h4">Our Events</Typography></Divider>
+                        <Divider><Typography variant="h4">{`${recent_or_upcoming} Events`}</Typography></Divider>
                     </Grid>
 
                     {/** display the actual events card */}

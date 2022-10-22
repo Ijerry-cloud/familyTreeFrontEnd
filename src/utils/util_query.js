@@ -89,7 +89,7 @@ export const fetchData = async ({queryKey}) => {
         console.log("my token is : ", token?.token);
         const authorization = { Authorization : `Bearer ${token?.token}` }
         config.headers = authorization;
-        config.params = {'name': payload_data}
+        config.params = payload_data
       }
     console.log("config: ", config);
     let response_data = await axios.get(url, config);
@@ -117,7 +117,7 @@ export const fetchData = async ({queryKey}) => {
         console.log("my token is : ", token?.token);
         const authorization = { Authorization : `Bearer ${token?.token}` }
         config.headers = authorization;
-        config.params = {'page': payload_data }
+        config.params = payload_data;
       }
     console.log("config: ", config);
     let response_data = await axios.get(url, config);
