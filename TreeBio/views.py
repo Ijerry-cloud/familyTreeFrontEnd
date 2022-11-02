@@ -193,5 +193,9 @@ class GetFamilyTreeApiSearchApiView(generics.ListAPIView):
                     "avatar": treebio2_image_helper(person),
                 }
             )
+        
+        results = dict()
+        results["tree_list"] = tree_list
+        results["search_name"] = search_name
             
-        return self.get_paginated_response(tree_list)
+        return self.get_paginated_response(results)

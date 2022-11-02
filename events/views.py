@@ -79,9 +79,14 @@ class ListCreateApiView(generics.ListCreateAPIView):
         return Response(response_data, status=status.HTTP_201_CREATED)
     
     def get_queryset(self):
-        return Event.objects.all()
-    
-            
+        now = timezone.now().today()
+        recent_or_upcoming = self.request.GET.get("recent_or_upcoming")
+        if recent_or_upcoming == "Recent":
+            return Event.objects.filter(end_date__lte=now)
+        elif recent_or_upcoming == "Upcoming":
+            return Event.objects.filter(end_date__gte=now)
+
+
 
 class RetrieveUpdateDestroyEventApiView(generics.RetrieveUpdateDestroyAPIView):
     """
