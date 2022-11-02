@@ -41,13 +41,16 @@ import { APP_EVENTS_PAGE,
          APP_GET_PROFILE,
          APP_EDIT_PROFILE,
          APP_FAMILY_TREE_BIO_PAGE,
-         APP_FAMILY_SEARCH_PAGE
+         APP_FAMILY_SEARCH_PAGE,
+         APP_LETTERS_PAGE
         } from "../utils/app_routes";
 import EventsPage from "../pages/eventPages/EventsPage";
 import EventsSearchPage from "../pages/eventPages/EventsSearchPage";
+import RestaurantLandingPage from "demos/RestaurantLandingPage";
 import EventsCreatePage from "../pages/eventPages/EventsCreatePage";
 import EventDetailPage from "../pages/eventPages/EventDetailPage";
 import GalleryPage from "../pages/galleryPages/GalleryPage";
+import LetterList from "../pages/letterPages/LetterList";
 import CreateGalleryPage from "../pages/galleryPages/CreateGalleryPage";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -56,8 +59,6 @@ import useToken from '../utils/useToken';
 import ChangePasswordPage from "../pages/settingsPages/ChangePasswordPage";
 import GetProfilePage from "../pages/settingsPages/GetProfilePage";
 import EditProfilePage from "../pages/settingsPages/EditProfilePage";
-import FamilyTreePage from "../pages/familyPages/FamilyTreePage";
-import TreeComponent from "./TreeComponents/TreeComponent";
 import TreeBioComponent from "./TreeComponents/TreeBioComponent";
 import UBalkanTree from "./TreeComponents/UBalkanTree";
 import SearchComponent from "./TreeComponents/SearchComponent";
@@ -76,7 +77,7 @@ const useStyles = makeStyles({
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
-      padding: theme.spacing(3),
+      padding: theme.spacing(0),
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -195,7 +196,7 @@ function Layout({children, window}){
         {
             text: "'Letters",
             icon: <BorderColorIcon color="primary" />,
-            path: APP_GALLERY_PAGE
+            path: APP_LETTERS_PAGE
         }
     ];
 
@@ -346,6 +347,7 @@ function Layout({children, window}){
                 </Drawer>
             </Box>
 
+
             {/** Main App Router */}
             <Main open={open}>
                 <DrawerHeader />
@@ -387,6 +389,13 @@ function Layout({children, window}){
                     <Route path={APP_FAMILY_SEARCH_PAGE}>
                         {/*     Temp_page_component */}
                         <SearchComponent />
+                    </Route>  
+                    <Route path={APP_LETTERS_PAGE}>
+                        {/*     Temp_page_component */}
+                        <LetterList />
+                    </Route>  
+                    <Route path={APP_HOME_PAGE}>
+                        <RestaurantLandingPage />
                     </Route>
 
                 </Switch>

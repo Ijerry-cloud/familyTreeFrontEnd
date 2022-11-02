@@ -16,6 +16,8 @@ export const APP_GALLERY_PAGE = "/app/gallery";
 
 export const APP_GALLERY_CREATE_PAGE = APP_GALLERY_PAGE + "/create";
 
+export const APP_LETTERS_PAGE = "/app/letters";
+
 export const APP_FAMILY_TREE_PAGE = "/app/family_tree";
 
 export const APP_FAMILY_TREE_BIO_PAGE = APP_FAMILY_TREE_PAGE + "/bio/:id";
