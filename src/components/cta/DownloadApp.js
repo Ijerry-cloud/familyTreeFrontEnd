@@ -35,30 +35,30 @@ const DecoratorBlobContainer = tw.div`absolute inset-0 overflow-hidden rounded-l
 const DecoratorBlob1 = tw(SvgDecoratorBlob1)`absolute bottom-0 left-0 w-80 h-80 transform -translate-x-20 translate-y-32 text-gray-800 opacity-50`
 const DecoratorBlob2 = tw(SvgDecoratorBlob1)`absolute top-0 right-0 w-80 h-80 transform  translate-x-20 -translate-y-64 text-gray-800 opacity-50`
 export default ({
-  subheading = "Download App",
+  subheading = "The Ihediwa Family Tree",
   text = "Developers all over the world are happily using Treact.",
-  link1Text = "App Store",
-  link1Url = "http://apple.com",
+  link1Text = "View from Top",
+  link1Url = "/app/family_tree",
   link1IconSrc = appleIconImageSrc,
-  link2Text = "Google Play",
-  link2Url = "http://play.google.com",
+  link2Text = "Search Tree",
+  link2Url = "/app/search",
   link2IconSrc = googlePlayIconImageSrc,
   pushDownFooter = false,
   imageSrc = mockupImageSrc,
 }) => {
   return (
-    <Container css={pushDownFooter && tw`mb-20 lg:mb-24`}>
+    <Container css={pushDownFooter && tw`mb-20 lg:mb-24`} style={{backgroundImage: "url(static/images/tree_56.jpg)"}}>
       <Content>
         <Row>
           <TextContainer>
             {subheading && <Subheading>{subheading}</Subheading>}
             <Text>{text}</Text>
             <LinksContainer>
-              <Link href={link1Url}>
+              <Link href={link1Url} style={{textDecoration: 'none'}}>
                 <img src={link1IconSrc} alt=""/>
                 <span>{link1Text}</span>
               </Link>
-              <Link href={link2Url}>
+              <Link href={link2Url} style={{textDecoration: 'none'}}>
                 <img src={link2IconSrc} alt=""/>
                 <span>{link2Text}</span>
               </Link>

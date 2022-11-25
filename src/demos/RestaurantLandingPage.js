@@ -62,7 +62,7 @@ export default () => {
             imageSrc: celebrationIconImageSrc,
             title: "Family Constitution",
             description: "View the revised family constitution as well as minutes of previous meetings",
-            url: "#"
+            url: "/app/search"
           }
         ]}
 
@@ -70,26 +70,22 @@ export default () => {
         imageCss={tw`w-20! h-20!`}
       />
       <MainFeature2
-        subheading={<Subheading>A Reputed Brand</Subheading>}
-        heading={<>Why <HighlightedText>Choose Us ?</HighlightedText></>}
+        subheading={<Subheading>A Desire to Create Value</Subheading>}
+        heading={<>Ihediwa <HighlightedText>Projects</HighlightedText></>}
         statistics={[
           {
-            key: "Orders",
-            value: "94000+",
+            key: "Ongoing Projects",
+            value: "3",
           },
           {
-            key: "Customers",
-            value: "11000+"
-          },
-          {
-            key: "Chefs",
-            value: "1500+"
+            key: "Completed Projects",
+            value: "5"
           }
         ]}
-        primaryButtonText="Order Now"
+        primaryButtonText="View Projects"
         primaryButtonUrl="https://order.now.com"
         imageInsideDiv={false}
-        imageSrc="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEzNzI2fQ&auto=format&fit=crop&w=768&q=80"
+        imageSrc="/static/images/plantation.jpg"
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={true}
@@ -98,10 +94,10 @@ export default () => {
       />
       <Testimonial
         subheading=""
-        heading={<>Customers <HighlightedText>Love Us.</HighlightedText></>}
+        heading={<>Meet The <HighlightedText>Excos.</HighlightedText></>}
       />
       <DownloadApp
-        text={<>People around you are ordering delicious meals using the <HighlightedTextInverse>Treact App.</HighlightedTextInverse></>}
+        text={<>Read about our Forefathers, their legacy and search through the <HighlightedTextInverse>Ihediwa Tree.</HighlightedTextInverse></>}
       />
       <Footer />
     </AnimationRevealPage>

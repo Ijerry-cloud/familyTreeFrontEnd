@@ -46,7 +46,7 @@ export default ({
       We have been doing this <wbr /> since <span tw="text-primary-500">1999.</span>
     </>
   ),
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  description = "From agriculture to education, social structure and preservation of our rich history and the ones before us. The Ihediwa projects are born out of the zeal to provide sustainability of the family and its continued leagacy. Any form of support would greatly be appreciated",
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
   imageSrc = StatsIllustrationSrc,
@@ -97,7 +97,7 @@ export default ({
                 </Statistic>
               ))}
             </Statistics>
-            <PrimaryButton as="a" href={primaryButtonUrl}>
+            <PrimaryButton as="a" href={primaryButtonUrl} style={{textDecoration: 'none'}}>
               {primaryButtonText}
             </PrimaryButton>
           </TextContent>

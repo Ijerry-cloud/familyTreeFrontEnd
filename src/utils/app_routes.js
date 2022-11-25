@@ -31,6 +31,8 @@ export const APP_EDIT_PROFILE =  APP_GET_PROFILE + "/edit";
 
 export const  APP_FAMILY_SEARCH_PAGE =  "/app/search";
 
+export const APP_PROJECT_PAGE = "/app/projects";
+
 
 
 

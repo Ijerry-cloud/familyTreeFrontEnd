@@ -42,7 +42,8 @@ import { APP_EVENTS_PAGE,
          APP_EDIT_PROFILE,
          APP_FAMILY_TREE_BIO_PAGE,
          APP_FAMILY_SEARCH_PAGE,
-         APP_LETTERS_PAGE
+         APP_LETTERS_PAGE,
+         APP_PROJECT_PAGE
         } from "../utils/app_routes";
 import EventsPage from "../pages/eventPages/EventsPage";
 import EventsSearchPage from "../pages/eventPages/EventsSearchPage";
@@ -62,6 +63,8 @@ import EditProfilePage from "../pages/settingsPages/EditProfilePage";
 import TreeBioComponent from "./TreeComponents/TreeBioComponent";
 import UBalkanTree from "./TreeComponents/UBalkanTree";
 import SearchComponent from "./TreeComponents/SearchComponent";
+import BlogIndex from "../pages/BlogIndex";
+import { red } from '@mui/material/colors';
 
 
 const drawerWidth = 200;
@@ -160,42 +163,42 @@ function Layout({children, window}){
         },
         {
             text: "Events",
-            icon: <EventIcon color="primary" />,
+            icon: <EventIcon color="error" />,
             path: APP_EVENTS_PAGE
         },
         {
             text: "Family Tree",
-            icon: <NaturePeopleIcon color="primary" />,
+            icon: <NaturePeopleIcon color='warning' />,
             path: APP_FAMILY_TREE_PAGE
         },
         {
             text: "Gallery",
-            icon: <ImageIcon color="primary" />,
+            icon: <ImageIcon color="success" />,
             path: APP_GALLERY_PAGE
         },
         {
             text: "Search Tree",
-            icon: <PersonSearchIcon color="primary" />,
+            icon: <PersonSearchIcon color="info" />,
             path: APP_FAMILY_SEARCH_PAGE
         },
         {
             text: "The Family(Igbo Land)",
-            icon: <FamilyRestroomIcon color="primary" />,
+            icon: <FamilyRestroomIcon color="secondary" />,
             path: APP_GALLERY_PAGE
         },
         {
             text: "Amumara(History)",
-            icon: <HolidayVillageIcon color="primary" />,
+            icon: <HolidayVillageIcon color="info" />,
             path: APP_GALLERY_PAGE
         },
         {
             text: "Projects",
-            icon: <Icon color="primary">tips_and_updates</Icon>,
-            path: APP_GALLERY_PAGE
+            icon: <Icon color="success">tips_and_updates</Icon>,
+            path: APP_PROJECT_PAGE
         },
         {
             text: "'Letters",
-            icon: <BorderColorIcon color="primary" />,
+            icon: <BorderColorIcon color="warning" />,
             path: APP_LETTERS_PAGE
         }
     ];
@@ -387,13 +390,17 @@ function Layout({children, window}){
                         <UBalkanTree />
                     </Route> 
                     <Route path={APP_FAMILY_SEARCH_PAGE}>
-                        {/*     Temp_page_component */}
+                        {/*     search_component */}
                         <SearchComponent />
                     </Route>  
                     <Route path={APP_LETTERS_PAGE}>
-                        {/*     Temp_page_component */}
+                        {/*     letters_component */}
                         <LetterList />
                     </Route>  
+                    <Route path={APP_PROJECT_PAGE}>
+                        {/*     projects_component */}
+                        <BlogIndex />
+                    </Route> 
                     <Route path={APP_HOME_PAGE}>
                         <RestaurantLandingPage />
                     </Route>

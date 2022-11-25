@@ -69,16 +69,16 @@ export default () => {
             </LinkList>
           </Column>
           <Column>
-            <ColumnHeading>Product</ColumnHeading>
+            <ColumnHeading>History</ColumnHeading>
             <LinkList>
               <LinkListItem>
-                <Link href="#">Log In</Link>
+                <Link href="#">Amumara</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Personal</Link>
+                <Link href="#">Otulu</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Business</Link>
+                <Link href="#">Ihediwa Uda</Link>
               </LinkListItem>
               <LinkListItem>
                 <Link href="#">Team</Link>
@@ -86,19 +86,19 @@ export default () => {
             </LinkList>
           </Column>
           <Column>
-            <ColumnHeading>Press</ColumnHeading>
+            <ColumnHeading>Media</ColumnHeading>
             <LinkList>
               <LinkListItem>
-                <Link href="#">Logos</Link>
+                <Link href="#">Letters</Link>
               </LinkListItem>
               <LinkListItem>
                 <Link href="#">Events</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Stories</Link>
+                <Link href="#">Gallery</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Office</Link>
+                <Link href="#">Media</Link>
               </LinkListItem>
             </LinkList>
           </Column>
@@ -123,7 +123,7 @@ export default () => {
             <SubscribeNewsletterContainer>
               <ColumnHeading>Subscribe to our Newsletter</ColumnHeading>
               <SubscribeText>
-                We deliver high quality blog posts written by professionals weekly. And we promise no spam.
+                Follow the Ihediwa Updates and get timely information delivered to your mail.
               </SubscribeText>
               <SubscribeForm method="get" action="#">
                 <Input type="email" placeholder="Your Email Address" style={{borderColor: 'rgb(255 255 255)'}} />
