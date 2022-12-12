@@ -14,8 +14,7 @@ import { useHistory } from 'react-router-dom';
 import { Avatar } from '@mui/material';
 import { injectArguments } from '../../utils/libs/utilFunctions';
 import { APP_FAMILY_TREE_BIO_PAGE } from '../../utils/app_routes';
-import InfoDialog from './infodialog'
-import { set } from 'lodash';
+import InfoDialog from './infodialog';
 
 // import avatar from 'src/assets/avatar.svg'
 

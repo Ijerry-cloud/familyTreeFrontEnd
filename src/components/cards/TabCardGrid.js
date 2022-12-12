@@ -6,7 +6,7 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 import { SectionHeading } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
-import { ReactComponent as StarIcon } from "images/star-icon.svg";
+import { ReactComponent as ThumbsIcon } from "images/thumbs-up-svgrepo-com.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-7.svg";
 
@@ -68,7 +68,7 @@ export default ({
         title: "Our very own Doctor",
         content: "Nee Ihediwa Dorathy bags her PhD",
         price: "26th July 2021",
-        rating: "4.9",
+        rating: "4",
         reviews: "89",
         url: "#"
       },
@@ -78,7 +78,7 @@ export default ({
         title: "We have a Rev Fr.!!",
         content: "Ordination of Fr Ihediwa Felix",
         price: "9th July 2022",
-        rating: "4.6",
+        rating: "4",
         reviews: "12",
         url: "#"
       },
@@ -88,7 +88,7 @@ export default ({
         title: "Agroeconomics",
         content: "The Ihediwa plantain project",
         price: "31st December 2021",
-        rating: "4.2",
+        rating: "4",
         reviews: "19",
         url: "#"
       },
@@ -98,7 +98,7 @@ export default ({
         title: "Annual Reunion",
         content: "Ihediwa meeting 2020",
         price: "$2.99",
-        rating: "5.0",
+        rating: "5",
         reviews: "61",
         url: "#"
       },
@@ -108,7 +108,7 @@ export default ({
         title: "Annual Reunion",
         content: "Ihediwa meeting 2021",
         price: "$3.99",
-        rating: "4.2",
+        rating: "4",
         reviews: "95",
         url: "#"
       },
@@ -118,7 +118,7 @@ export default ({
         title: "Child Dedication",
         content: "Child dedication ceremony of ...",
         price: "16th October 2022",
-        rating: "3.9",
+        rating: "3",
         reviews: "26",
         url: "#"
       }
@@ -174,10 +174,9 @@ export default ({
                   <CardImageContainer imageSrc={card.imageSrc}>
                     <CardRatingContainer>
                       <CardRating>
-                        <StarIcon />
+                        <ThumbsIcon />
                         {card.rating}
                       </CardRating>
-                      <CardReview>({card.reviews})</CardReview>
                     </CardRatingContainer>
                     <CardHoverOverlay
                       variants={{
@@ -221,7 +220,7 @@ const getRandomCards = () => {
       title: "Our very own Doctor",
       content: "Nee Ihediwa Dorathy bags her PhD",
       price: "26th July 2021",
-      rating: "4.9",
+      rating: "4",
       reviews: "89",
       url: "#"
     },
@@ -231,7 +230,7 @@ const getRandomCards = () => {
       title: "We have a Rev Fr.!!",
       content: "Ordination of Fr Ihediwa Felix",
       price: "9th July 2022",
-      rating: "4.6",
+      rating: "4",
       reviews: "12",
       url: "#"
     },
@@ -241,7 +240,7 @@ const getRandomCards = () => {
       title: "Agroeconomics",
       content: "The Ihediwa plantain project",
       price: "31st December 2021",
-      rating: "4.2",
+      rating: "4",
       reviews: "19",
       url: "#"
     },
@@ -251,7 +250,7 @@ const getRandomCards = () => {
       title: "Annual Reunion",
       content: "Ihediwa meeting 2020",
       price: "$2.99",
-      rating: "5.0",
+      rating: "5",
       reviews: "61",
       url: "#"
     },
@@ -261,7 +260,7 @@ const getRandomCards = () => {
       title: "Annual Reunion",
       content: "Ihediwa meeting 2021",
       price: "$3.99",
-      rating: "4.2",
+      rating: "4",
       reviews: "95",
       url: "#"
     },
@@ -271,7 +270,7 @@ const getRandomCards = () => {
       title: "Child Dedication",
       content: "Child dedication ceremony of ...",
       price: "16th October 2022",
-      rating: "3.9",
+      rating: "3",
       reviews: "26",
       url: "#"
     }

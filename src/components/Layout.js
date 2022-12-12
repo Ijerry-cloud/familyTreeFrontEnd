@@ -182,7 +182,7 @@ function Layout({children, window}){
             path: APP_FAMILY_SEARCH_PAGE
         },
         {
-            text: "The Family(Igbo Land)",
+            text: "The Igbo Family",
             icon: <FamilyRestroomIcon color="secondary" />,
             path: APP_GALLERY_PAGE
         },
