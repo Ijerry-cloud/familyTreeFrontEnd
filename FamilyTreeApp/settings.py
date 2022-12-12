@@ -109,7 +109,7 @@ UBASE_URL = {
 
 if env == "prod":
     # heroku production settings
-    prod_db  =  dj_database_url.config(conn_max_age=500)
+    prod_db  =  dj_database_url.config( default='postgresql://postgres:postgres@localhost:5432/mysite', conn_max_age=600)
     DATABASES = dict()
     DATABASES["default"] = {}
     DATABASES['default'].update(prod_db)
