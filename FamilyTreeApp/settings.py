@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "gallery",
     "TreeBio",
     "mptt",
+    "projects"
 ]
 
 MIDDLEWARE = [
@@ -190,5 +191,5 @@ REST_FRAMEWORK = {
         "core.authentication.CustomTokenAuthentication"
     ],
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination',
-    'PAGE_SIZE': 1
+    'PAGE_SIZE': 5
 }
