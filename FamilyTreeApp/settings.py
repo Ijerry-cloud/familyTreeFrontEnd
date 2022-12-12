@@ -107,7 +107,7 @@ UBASE_URL = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-if env == "prod":
+if env == "prods":
     # heroku production settings
     prod_db  =  dj_database_url.config( default='postgresql://postgres:postgres@localhost:5432/mysite', conn_max_age=600)
     DATABASES = dict()
