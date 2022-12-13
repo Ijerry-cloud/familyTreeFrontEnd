@@ -33,7 +33,7 @@ EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["ihediwafamilytreeapp.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["familytreeapi8.onrender.com", "127.0.0.1"]
 
 
 # Application definition
@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'FamilyTreeApp.wsgi.application'
 env = "prods"
 
 UBASE_URL = {
-    "prod": "https://ihediwafamilytreeapp.herokuapp.com",
+    "prod": "https://familytreeapi8.onrender.com",
     "prods": "http://127.0.0.1:8000"    
 }
 
