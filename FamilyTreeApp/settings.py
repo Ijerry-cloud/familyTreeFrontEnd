@@ -95,7 +95,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FamilyTreeApp.wsgi.application'
 
-env = "prods"
+env = config("ENV_MODE")
 
 UBASE_URL = {
     "prod": "https://familytreeapi8.onrender.com",
@@ -107,7 +107,7 @@ UBASE_URL = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-if env == "prods":
+if env == "prod":
     # heroku production settings
     prod_db  =  dj_database_url.config( default='postgresql://postgres:postgres@localhost:5432/mysite', conn_max_age=600)
     DATABASES = dict()
