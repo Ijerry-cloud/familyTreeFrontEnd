@@ -64,8 +64,8 @@ class GetFamilyTreeDetailApiView(generics.RetrieveAPIView):
                     "full_name": (str(bio.last_name) + " " + str(bio.first_name)),
                     "gender": bio.gender,
                     "marital_status": bio.marital_status,
-                    "image": treebio2_image_helper(bio),
-                    "avatar": treebio2_image_helper(bio),
+                    "image": bio.image,
+                    "avatar": bio.image,
                     "bio": bio.bio,
                     "pid": bio.parent.id if bio.parent else 0,
                     "spouse": (bio.spouse.last_name + " " + bio.spouse.first_name) if bio.spouse else ""
@@ -79,8 +79,8 @@ class GetFamilyTreeDetailApiView(generics.RetrieveAPIView):
                     "full_name": (str(tree_node.last_name) + " " + str(tree_node.first_name)),
                     "gender": tree_node.gender,
                     "marital_status": tree_node.marital_status,
-                    "image": treebio2_image_helper(tree_node),
-                    "avatar": treebio2_image_helper(tree_node),
+                    "image": tree_node.image,
+                    "avatar": tree_node.image,
                     "bio": tree_node.bio,
                     "pid": tree_node.parent.id if tree_node.parent else 0,
                     "spouse": (tree_node.spouse.last_name + " " + tree_node.spouse.first_name) if tree_node.spouse else ""
@@ -94,8 +94,8 @@ class GetFamilyTreeDetailApiView(generics.RetrieveAPIView):
                     "full_name": (str(tree_node.last_name) + " " + str(tree_node.first_name)),
                     "gender": tree_node.gender,
                     "marital_status": tree_node.marital_status,
-                    "image": treebio2_image_helper(tree_node),
-                    "avatar": treebio2_image_helper(tree_node),
+                    "image": tree_node.image,
+                    "avatar": tree_node.image,
                     "bio": tree_node.bio,
                     "pid": tree_node.parent.id if tree_node.parent else 0,
                     "spouse": (tree_node.spouse.last_name + " " + tree_node.spouse.first_name) if tree_node.spouse else ""
@@ -172,8 +172,6 @@ class GetFamilyTreeApiSearchApiView(generics.ListAPIView):
     
     def get(self, request, *args, **kwargs):
         search_name = request.GET.get('name')
-        print('search name: ')
-        print(search_name)
         people = TreeBio2.objects.filter(Q(first_name__icontains=search_name) | Q(last_name__icontains=search_name))
         people_set = self.paginate_queryset(self.filter_queryset(people))
 
@@ -189,8 +187,8 @@ class GetFamilyTreeApiSearchApiView(generics.ListAPIView):
                     'id' : person.id,
                     "first_name": person.first_name,
                     "last_name": person.last_name,
-                    "image": treebio2_image_helper(person),
-                    "avatar": treebio2_image_helper(person),
+                    "image": person.image,
+                    "avatar": person.image,
                 }
             )
         

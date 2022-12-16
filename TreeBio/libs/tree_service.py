@@ -44,8 +44,8 @@ def recursive_node_to_dict(bio):
 
 
 def treebio2_image_helper(treebio2):
-    if treebio2.image:
-        return "%s/family/details/%s/image/" % (UBASE_URL[env], treebio2.id)
+    if treebio2.main_image:
+        return "/%s/family/details/%s/image/" % (UBASE_URL[env], treebio2.id)
     return "http://cdn.onlinewebfonts.com/svg/img_264570.png"
     
     
@@ -106,7 +106,8 @@ def treebio_helper(treebio2):
     data["gender"] = treebio2.gender
     data["marital_status"] = treebio2.marital_status
     data["dob"] = str(treebio2.dob)
-    data["image"] = treebio2_image_helper(treebio2)
+    data["image"] = treebio2.image
+    data["family_image"] = treebio2.family_image
     data["bio"] = treebio2.bio
     data["bio2"] = treebio2.bio2
     data["bio3"] = treebio2.bio3

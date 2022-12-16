@@ -29,6 +29,7 @@ class TreeBio2(MPTTModel):
     marital_status = models.CharField(max_length=11, null=True, blank=True)
     dob = models.DateField(null=True)
     image = models.TextField(null=True, blank=True)
+    family_image = models.TextField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     bio2 = models.TextField(null=True, blank=True)
     bio3 = models.TextField(null=True, blank=True)
